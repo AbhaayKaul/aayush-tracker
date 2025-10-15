@@ -22,7 +22,10 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 24 * 60 * 60 * 1000 // 24 hours
+        maxAge: 24 * 60 * 60 * 1000, // 24 hours
+        secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+        httpOnly: true,
+        sameSite: 'lax'
     }
 }));
 
@@ -150,12 +153,15 @@ app.get('/api/user', isAuthenticated, (req, res) => {
 app.get('/api/user/stats', isAuthenticated, async (req, res) => {
     try {
         const userId = req.user._id;
-        console.log('📊 Fetching stats for user:', userId, req.user.email);
+        if (process.env.NODE_ENV !== 'production') {
+            console.log('📊 Fetching stats for user:', userId, req.user.email);
+        }
         
         // Get all responses by this user
         const userResponses = await Response.find({ userId: userId }).sort({ createdAt: -1 });
-        console.log('📊 Found', userResponses.length, 'responses for this user');
-        
+        if (process.env.NODE_ENV !== 'production'){
+            console.log('📊 Found', userResponses.length, 'responses for this user');
+        }
         // Calculate statistics
         const totalCalls = userResponses.length;
         const yesCalls = userResponses.filter(r => r.aayush_status === 'yes').length;
@@ -576,7 +582,22 @@ app.get('/api/responses', isAuthenticated, async (req, res) => {
     }
 });
 
+// 404 Handler - Must be after all routes
+app.use((req, res) => {
+    res.status(404).json({ error: 'Route not found' });
+});
+
+// Global Error Handler
+app.use((err, req, res, next) => {
+    console.error('Global error handler:', err);
+    res.status(err.status || 500).json({
+        error: process.env.NODE_ENV === 'production' 
+            ? 'An error occurred' 
+            : err.message
+    });
+});
+
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on ${BASE_URL}`);
 });
 
