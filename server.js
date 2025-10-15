@@ -11,7 +11,7 @@ const User = require('./models/User');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
+const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -56,7 +56,7 @@ mongoose.connect(process.env.MONGODB_URI)
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    callbackURL: process.env.CALLBACK_URL || "http://localhost:3000/auth/google/callback"
 },
 async (accessToken, refreshToken, profile, done) => {
     try {
@@ -448,7 +448,7 @@ app.post('/api/submit', isAuthenticated, async (req, res) => {
                             <p>🏆 <strong>Achievement Unlocked:</strong> You successfully summoned Aayush!</p>
                             
                             <p style="text-align: center; margin: 30px 0;">
-                                <a href="http://localhost:3000/dashboard.html" style="background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
+                                <a href="${BASE_URL}/dashboard.html" style="background: #667eea; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
                                     👀 Stalk the Dashboard
                                 </a>
                             </p>
@@ -485,7 +485,7 @@ app.post('/api/submit', isAuthenticated, async (req, res) => {
                             <p>📊 <strong>Stats Update:</strong> Aayush's "Not Coming" streak continues!</p>
                             
                             <p style="text-align: center; margin: 30px 0;">
-                                <a href="http://localhost:3000/dashboard.html" style="background: #f44336; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
+                                <a href="${BASE_URL}/dashboard.html" style="background: #f44336; color: white; padding: 12px 30px; text-decoration: none; border-radius: 25px; display: inline-block;">
                                     😢 See the Hall of Shame
                                 </a>
                             </p>
@@ -525,7 +525,7 @@ app.post('/api/submit', isAuthenticated, async (req, res) => {
                             </p>
                             
                             <p style="margin: 30px 0;">
-                                <a href="http://localhost:3000/dashboard.html" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 15px 40px; text-decoration: none; border-radius: 30px; display: inline-block; font-size: 18px;">
+                                <a href="${BASE_URL}/dashboard.html" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 15px 40px; text-decoration: none; border-radius: 30px; display: inline-block; font-size: 18px;">
                                     🚀 Check the Chaos
                                 </a>
                             </p>
