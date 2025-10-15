@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aayush's Dashboard - Response Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>📊 Aayush's Dashboard</h1>
+                    <p>Track all the pareshaani with Aayush</p>
+                </div>
+                <div class="header-buttons">
+                    <a href="/profile" class="btn-header">
+                        👤 Profile
+                    </a>
+                    <a href="/leaderboard" class="btn-header">
+                        🏆 Leaderboard
+                    </a>
+                    <a href="/form" class="btn-header">
+                        📝 Form
+                    </a>
+                    <a href="/home.html" class="btn-header">
+                        🏠 Home
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="dashboard-section">
+                <div class="dashboard-header">
+                    <h2>All Responses</h2>
+                    <div class="dashboard-actions">
+                        <button id="refreshBtn" class="btn-action">🔄 Refresh</button>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalResponses">0</div>
+                        <div class="stat-label">Total Responses</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="yesCount">0</div>
+                        <div class="stat-label">Aayush Came</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="noCount">0</div>
+                        <div class="stat-label">Didn't Come</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="heheheCount">0</div>
+                        <div class="stat-label">Hehehe Bhai</div>
+                    </div>
+                </div>
+
+                <div id="responsesContainer">
+                    <p class="loading">Loading responses...</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>
+

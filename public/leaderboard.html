@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Aayush Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>🏆 Leaderboard</h1>
+                    <p>Who's winning the Aayush game?</p>
+                </div>
+                <div class="header-buttons">
+                    <a href="/home.html" class="btn-header">🏠 Home</a>
+                    <a href="/profile" class="btn-header">👤 Profile</a>
+                    <a href="/dashboard.html" class="btn-header">📊 Dashboard</a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Loading State -->
+            <div id="loadingState" class="loading">
+                <div class="spinner"></div>
+                <p>Loading leaderboard...</p>
+            </div>
+
+            <!-- Leaderboard Content -->
+            <div id="leaderboardContent" style="display: none;">
+                <!-- Overall Stats -->
+                <section class="overall-stats">
+                    <h2>📊 Global Statistics</h2>
+                    <div class="overall-grid">
+                        <div class="overall-card">
+                            <div class="overall-icon">👥</div>
+                            <div class="overall-value" id="totalUsers">0</div>
+                            <div class="overall-label">Total Players</div>
+                        </div>
+                        <div class="overall-card">
+                            <div class="overall-icon">📞</div>
+                            <div class="overall-value" id="totalResponses">0</div>
+                            <div class="overall-label">Total Calls</div>
+                        </div>
+                        <div class="overall-card">
+                            <div class="overall-icon">✅</div>
+                            <div class="overall-value" id="totalYes">0</div>
+                            <div class="overall-label">Times Aayush Came</div>
+                        </div>
+                        <div class="overall-card">
+                            <div class="overall-icon">❌</div>
+                            <div class="overall-value" id="totalNo">0</div>
+                            <div class="overall-label">Times Ghosted</div>
+                        </div>
+                        <div class="overall-card">
+                            <div class="overall-icon">🎉</div>
+                            <div class="overall-value" id="totalHehehe">0</div>
+                            <div class="overall-label">Hehehe Bhai</div>
+                        </div>
+                        <div class="overall-card">
+                            <div class="overall-icon">📈</div>
+                            <div class="overall-value" id="overallSuccessRate">0%</div>
+                            <div class="overall-label">Success Rate</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Leaderboards Grid -->
+                <div class="leaderboards-grid">
+                    <!-- Most Calls -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>📞 Most Persistent</h3>
+                            <p>Who calls Aayush the most?</p>
+                        </div>
+                        <div id="mostCallsBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Most Successful -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>🏆 Most Successful</h3>
+                            <p>Best success rate (min 3 calls)</p>
+                        </div>
+                        <div id="mostSuccessfulBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Most Rejected -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>😤 Most Ghosted</h3>
+                            <p>Who got rejected the most?</p>
+                        </div>
+                        <div id="mostRejectedBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Most Hehehe Bhai -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>🤪 Comedy Kings</h3>
+                            <p>Most "Hehehe Bhai" moments</p>
+                        </div>
+                        <div id="mostHeheheBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Highest Pareshaani -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>💔 Maximum Pareshaani</h3>
+                            <p>Highest suffering score</p>
+                        </div>
+                        <div id="highestPareshaaniBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+
+                    <!-- Fastest Response -->
+                    <section class="leaderboard-section">
+                        <div class="section-header">
+                            <h3>⚡ Speed Demons</h3>
+                            <p>Fastest average response time</p>
+                        </div>
+                        <div id="fastestResponseBoard" class="leaderboard-list">
+                            <!-- Populated by JS -->
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="leaderboard.js"></script>
+</body>
+</html>
+

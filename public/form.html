@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Response Collector</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-text">
+                    <h1>📋 Response Collector</h1>
+                    <p>Share your thoughts with us</p>
+                </div>
+                <div class="header-buttons">
+                    <a href="/profile" class="btn-header">
+                        👤 Profile
+                    </a>
+                    <a href="/leaderboard" class="btn-header">
+                        🏆 Leaderboard
+                    </a>
+                    <a href="/dashboard.html" class="btn-header">
+                        📊 Dashboard
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Multi-Step Form Section -->
+            <section class="form-section">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                
+                <div class="question-counter">
+                    Question <span id="currentQuestion">1</span> of <span id="totalQuestions">6</span>
+                </div>
+
+                <form id="responseForm">
+                    <!-- Question 1: Your Name -->
+                    <div class="question-slide active" data-question="1">
+                        <h2 class="question-title">Your Name</h2>
+                        <input type="text" id="q1" name="q1" class="question-input" placeholder="Enter your name" required>
+                    </div>
+
+                    <!-- Question 2: Date -->
+                    <div class="question-slide" data-question="2">
+                        <h2 class="question-title">Date</h2>
+                        <input type="date" id="q2" name="q2" class="question-input" required>
+                    </div>
+
+                    <!-- Question 3: Reason for calling -->
+                    <div class="question-slide" data-question="3">
+                        <h2 class="question-title">Reason for calling Aayush Singh</h2>
+                        <input type="text" id="q3" name="q3" class="question-input" placeholder="Enter your reason" required>
+                    </div>
+
+                    <!-- Question 4: Aayush Status -->
+                    <div class="question-slide" data-question="4">
+                        <h2 class="question-title">Aayush's Status</h2>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="yes" required>
+                                <span class="radio-label">Yes</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="no" required>
+                                <span class="radio-label">No</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q4" value="hehehe bhai" required>
+                                <span class="radio-label">Hehehe bhai</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 5: Conditional - If Yes -->
+                    <div class="question-slide conditional" data-question="5" data-condition="yes">
+                        <h2 class="question-title">If Yes, then how much time taken to come down</h2>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="immediately(2-5 mins)">
+                                <span class="radio-label">Immediately (2-5 mins)</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="5-15 mins">
+                                <span class="radio-label">5-15 mins</span>
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="q5" value="more than 15 mins">
+                                <span class="radio-label">More than 15 mins</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Question 6: Conditional - If No -->
+                    <div class="question-slide conditional" data-question="6" data-condition="no">
+                        <h2 class="question-title">Reason for Not Coming</h2>
+                        <textarea id="q6" name="q6" class="question-input" rows="5" placeholder="Please explain why..."></textarea>
+                    </div>
+
+                    <!-- Navigation Buttons -->
+                    <div class="form-navigation">
+                        <button type="button" id="prevBtn" class="btn-nav btn-prev" disabled>
+                            ← Previous
+                        </button>
+                        <button type="button" id="nextBtn" class="btn-nav btn-next">
+                            Next →
+                        </button>
+                        <button type="submit" id="submitBtn" class="btn-nav btn-submit" style="display: none;">
+                            Submit Response
+                        </button>
+                    </div>
+                </form>
+
+                <div id="notification" class="notification"></div>
+            </section>
+
+            <!-- Success Screen -->
+            <section class="success-section" id="successScreen" style="display: none;">
+                <div class="success-icon" id="successIcon">✅</div>
+                <h2 class="success-title" id="successTitle">You have successfully entered your pareshaani with Aayush</h2>
+                <p class="success-subtitle" id="successSubtitle">Your response has been recorded and saved.</p>
+                
+                <div class="success-buttons">
+                    <button type="button" id="submitAnotherBtn" class="btn-success btn-primary">
+                        📝 Submit Another Response
+                    </button>
+                    <button type="button" id="viewDashboardBtn" class="btn-success btn-secondary">
+                        📊 View Aayush's Dashboard
+                    </button>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

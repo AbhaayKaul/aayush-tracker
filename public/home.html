@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Aayush Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <div class="container">
+        <header class="home-header">
+            <div class="user-info">
+                <img src="" alt="User" class="user-avatar" id="userAvatar">
+                <div class="user-details">
+                    <h2 id="userName">Loading...</h2>
+                    <p id="userEmail">email@example.com</p>
+                </div>
+            </div>
+            <a href="/logout" class="btn-logout">
+                🚪 Logout
+            </a>
+        </header>
+
+        <main class="home-main">
+            <div class="welcome-section">
+                <h1>Welcome to Aayush Tracker</h1>
+                <p>What would you like to do today?</p>
+            </div>
+
+            <div class="action-cards">
+                <a href="/form" class="action-card">
+                    <div class="card-icon">📝</div>
+                    <h3>Input Form</h3>
+                    <p>Record your pareshaani with Aayush</p>
+                </a>
+
+                <a href="/dashboard.html" class="action-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Aayush Dashboard</h3>
+                    <p>View all responses and statistics</p>
+                </a>
+
+                <a href="/leaderboard" class="action-card">
+                    <div class="card-icon">🏆</div>
+                    <h3>Leaderboard</h3>
+                    <p>See who's winning the Aayush game</p>
+                </a>
+
+                <a href="/profile" class="action-card">
+                    <div class="card-icon">👤</div>
+                    <h3>Your Profile</h3>
+                    <p>View your submission history</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <script src="home.js"></script>
+</body>
+</html>
+
