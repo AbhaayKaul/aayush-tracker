@@ -128,7 +128,7 @@ function isAuthenticated(req, res, next) {
     if (req.path.startsWith('/api/')) {
         return res.status(401).json({ error: 'Not Authenticated' });
     }
-    
+
     res.redirect('/login.html');
 }
 
@@ -140,7 +140,21 @@ app.get('/auth/google',
 app.get('/auth/google/callback',
     passport.authenticate('google', { failureRedirect: '/login.html' }),
     (req, res) => {
-        res.redirect('/home.html');
+        console.log('✅ OAuth callback successful, user:', req.user?.email);
+        console.log('📝 Session ID:', req.sessionID);
+        console.log('🔐 Is Authenticated:', req.isAuthenticated());
+        console.log('🍪 Session data:', req.session);
+        console.log('🍪 Cookie:', req.headers.cookie);
+        
+        // Force session save before redirect
+        req.session.save((err) => {
+            if (err) {
+                console.error('❌ Session save error:', err);
+                return res.status(500).send('Session save failed');
+            }
+            console.log('💾 Session saved successfully');
+            res.redirect('/home.html');
+        });
     }
 );
 
@@ -169,6 +183,12 @@ app.get('/form', isAuthenticated, (req, res) => {
 
 // API endpoint to get current user
 app.get('/api/user', isAuthenticated, (req, res) => {
+    console.log('👤 /api/user called');
+    console.log('📝 Session ID:', req.sessionID);
+    console.log('🍪 Cookie:', req.headers.cookie);
+    console.log('🔐 Is Authenticated:', req.isAuthenticated());
+    console.log('👤 User:', req.user?.email);
+    
     res.json({
         name: req.user.name,
         email: req.user.email,
