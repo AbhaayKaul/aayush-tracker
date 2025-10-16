@@ -2,6 +2,18 @@
 async function loadUserInfo() {
     try {
         const response = await fetch('/api/user');
+        
+        // Only redirect if we get a 401/403 (authentication error)
+        if (response.status === 401 || response.status === 403 || response.redirected) {
+            console.log('Not authenticated, redirecting to login...');
+            window.location.href = '/login.html';
+            return;
+        }
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const user = await response.json();
         
         if (user && user.name) {
@@ -11,8 +23,8 @@ async function loadUserInfo() {
         }
     } catch (error) {
         console.error('Error loading user info:', error);
-        // Redirect to login if not authenticated
-        window.location.href = '/login.html';
+        // Don't redirect on network errors, just show error
+        document.getElementById('userName').textContent = 'Error loading user';
     }
 }
 

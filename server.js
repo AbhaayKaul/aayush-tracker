@@ -113,9 +113,22 @@ passport.deserializeUser(async (id, done) => {
 
 // Middleware to check if user is authenticated
 function isAuthenticated(req, res, next) {
+    if (process.env.NODE_ENV !== 'production') {
+        console.log('Auth check for:', {
+            isAuthenticated: req.isAuthenticated(),
+            hasSession: !!req.session,
+            sessionID:req.sessionID,
+            hasUser: !!req.User
+        });
+    }
     if (req.isAuthenticated()) {
         return next();
     }
+
+    if (req.path.startsWith('/api/')) {
+        return res.status(401).json({ error: 'Not Authenticated' });
+    }
+    
     res.redirect('/login.html');
 }
 
