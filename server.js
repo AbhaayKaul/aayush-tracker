@@ -53,7 +53,10 @@ const emailTransporter = nodemailer.createTransport({
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
-    }
+    },
+    connectionTimeout:10000,
+    greetingTimeout: 5000,
+    socketTimeout: 10000
 });
 
 // MongoDB Connection
@@ -596,14 +599,17 @@ app.post('/api/submit', isAuthenticated, async (req, res) => {
                     `;
                 }
 
-                await emailTransporter.sendMail({
+                emailTransporter.sendMail({
                     from: `"Aayush Pareshaani Tracker 🤡" <${process.env.EMAIL_USER}>`,
                     to: req.user.email,
                     subject: emailSubject,
                     html: emailContent
+                }).then(() => {
+                    console.log('✅ Confirmation email sent to:', req.user.email);
+                }).catch(emailError => {
+                    console.error('❌ Error sending email:', emailError);
+                    // Don't fail the request if email fails
                 });
-
-                console.log('✅ Email sent to:', req.user.email);
             } catch (emailError) {
                 console.error('❌ Error sending email:', emailError.message);
                 // Don't fail the request if email fails
