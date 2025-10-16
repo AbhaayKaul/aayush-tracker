@@ -13,6 +13,9 @@ const User = require('./models/User');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
+
+app.set('trust proxy', 1); // Trust first proxy if behind a proxy (e.g., Vercel)
+
 // Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
